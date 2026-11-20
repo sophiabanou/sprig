@@ -12,11 +12,11 @@ const MESSAGES = {
 }
 
 /* Each validator returns an object of field name to message, empty when the values are valid. */
-export function validateTask({ title = '', isDateChosen = false, date = '' } = {}) {
+export function validateTask({ title = '', isDateChosen = false, date = '' } = {}, keptDate = '') {
   const errors = {}
   if (!title.trim()) errors.title = MESSAGES.taskTitle
   if (isDateChosen && !date) errors.date = MESSAGES.dateMissing
-  else if (isDateChosen && date < toDateKey()) errors.date = MESSAGES.datePast
+  else if (isDateChosen && date < toDateKey() && date !== keptDate) errors.date = MESSAGES.datePast
   return errors
 }
 

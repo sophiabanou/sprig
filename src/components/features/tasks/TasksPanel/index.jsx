@@ -33,8 +33,30 @@ function TasksPanel() {
   const { headingRef, handleDelete } = useTaskDelete()
   const { isOpen, formKey, handleOpen, handleClose, handleClosed, closeWithMessage } = useFormDrawer()
   const [activeTab, setActiveTab] = useState(TASK_TAB.DATED)
+  const [editingTask, setEditingTask] = useState(null)
   const isDated = activeTab === TASK_TAB.DATED
   const tasks = isDated ? dated : general
+
+  const handleNew = useCallback(() => {
+    setEditingTask(null)
+    handleOpen()
+  }, [handleOpen])
+
+  const handleEdit = useCallback(
+    (task = {}) => {
+      setEditingTask(task)
+      handleOpen()
+    },
+    [handleOpen],
+  )
+
+  const handleSave = useCallback(
+    (task = {}) => {
+      setActiveTab(task.dueDate ? TASK_TAB.DATED : TASK_TAB.GENERAL)
+      closeWithMessage(`Task updated: ${task.title}`)
+    },
+    [closeWithMessage],
+  )
 
   const handleAdd = useCallback(
     (task = {}) => {
@@ -46,12 +68,12 @@ function TasksPanel() {
 
   const newTaskButton = useMemo(
     () => (
-      <Button onClick={handleOpen}>
+      <Button onClick={handleNew}>
         <Icon name="plus" size="sm" />
         New task
       </Button>
     ),
-    [handleOpen],
+    [handleNew],
   )
 
   const closeButton = useMemo(
@@ -81,15 +103,17 @@ function TasksPanel() {
           isEmpty={tasks.length === 0}
         >
           {tasks.map((task) => (
-            <TaskRow key={task.id} task={task} onDelete={handleDelete} />
+            <TaskRow key={task.id} task={task} onEdit={handleEdit} onDelete={handleDelete} />
           ))}
         </ListCard>
       </Tabs>
-      <Drawer label="New task" isOpen={isOpen} onClose={handleClose} onClosed={handleClosed}>
+      <Drawer label={editingTask ? 'Edit task' : 'New task'} isOpen={isOpen} onClose={handleClose} onClosed={handleClosed}>
         <TaskForm
           key={formKey}
+          task={editingTask}
           initialDueChoice={isDated ? DUE_CHOICE.TODAY : DUE_CHOICE.NONE}
           onAdd={handleAdd}
+          onSave={handleSave}
           headerAction={closeButton}
         />
       </Drawer>
