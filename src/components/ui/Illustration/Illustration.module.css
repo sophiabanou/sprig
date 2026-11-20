@@ -1,0 +1,42 @@
+.illustration {
+  flex: none;
+  display: block;
+  width: var(--size-illustration);
+  height: var(--size-illustration);
+  fill: none;
+  overflow: visible;
+}
+
+.shadow {
+  fill: var(--fg);
+}
+
+.body {
+  fill: var(--tone-illustration, var(--tone-bg));
+  stroke: var(--fg);
+}
+
+.line {
+  stroke: var(--fg);
+}
+
+.detail {
+  stroke: var(--tone-fg);
+}
+
+.blush {
+  fill: var(--tone-vivid);
+}
+
+.accent {
+  fill: var(--tone-illustration-accent, var(--tone-vivid));
+  stroke: var(--fg);
+}
+
+.dot {
+  fill: var(--tone-fg);
+}
+
+.sparkle {
+  stroke: var(--tone-solid);
+}

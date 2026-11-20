@@ -1,0 +1,63 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Ink shape behind the face, revealed when the face lifts */
+.shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--fg);
+  opacity: 0;
+}
+
+.face {
+  position: relative;
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--size-control);
+  padding: 0 var(--space-4);
+  border: 1px solid transparent;
+  border-radius: inherit;
+}
+
+.primary .face {
+  background: var(--primary);
+  color: var(--primary-fg);
+  border-color: var(--primary-fg);
+}
+
+.secondary .face {
+  background: var(--surface);
+  color: var(--fg);
+  border-color: var(--border-control);
+}
+
+/* The main action of a form */
+.lg .face {
+  min-height: var(--size-control-lg);
+  padding: 0 var(--space-6);
+}
+
+/* Buttons without the lift only tint on hover */
+.flat .face {
+  transition: background-color var(--duration-hover) var(--ease-hover);
+}
+
+.flat.secondary:hover .face {
+  background: var(--surface-muted);
+}

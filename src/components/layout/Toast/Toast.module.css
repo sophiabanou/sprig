@@ -1,0 +1,57 @@
+/* Centered over the content, beside the sidebar */
+.toast {
+  position: fixed;
+  left: calc(50% + var(--size-sidebar) / 2);
+  bottom: var(--space-6);
+  z-index: 10;
+  translate: -50% 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: calc(100vw - 2 * var(--space-4));
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-6);
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+  color: var(--primary-fg);
+  box-shadow: var(--shadow-drawer);
+}
+
+.message {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.action {
+  flex: none;
+  min-height: var(--size-control-inner);
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--primary-fg);
+  color: var(--primary);
+  cursor: pointer;
+  transition: background-color var(--duration-hover) var(--ease-hover);
+}
+
+.action:hover {
+  background: var(--surface-muted);
+}
+
+.action:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring-inverse);
+}
+
+/* The sidebar moves to the top below 768, so the toast centers on the screen */
+@media (max-width: 768px) {
+  .toast {
+    left: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .toast {
+    bottom: var(--space-4);
+    padding-left: var(--space-4);
+  }
+}

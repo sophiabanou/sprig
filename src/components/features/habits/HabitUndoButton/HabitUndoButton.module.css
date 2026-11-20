@@ -1,0 +1,23 @@
+/*
+  A small pill that sits in the progress line, so undoing stays next to the count it changes.
+  The negative margin cancels its border, so the line is no taller with the pill than without it.
+*/
+.undo {
+  margin-block: calc(var(--space-half) * -1);
+  padding: 0 var(--space-2);
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--fg-secondary);
+  cursor: pointer;
+  transition: background-color var(--duration-hover) var(--ease-hover);
+}
+
+.undo:hover {
+  background: var(--surface-muted);
+}
+
+.undo:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}

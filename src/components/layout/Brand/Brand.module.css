@@ -1,0 +1,16 @@
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-half);
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  width: var(--size-logo);
+  height: var(--size-logo);
+}
+
+.wordmark {
+  transform: translateY(var(--offset-wordmark));
+}

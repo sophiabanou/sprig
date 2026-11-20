@@ -1,0 +1,73 @@
+/* --night runs from 0 (day) to 1 (night) and is tweened by useSkySwitch */
+.switch {
+  --night: 0;
+  --sky: color-mix(in srgb, var(--scene-night) calc(var(--night) * 100%), var(--scene-day));
+
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  width: var(--size-sky-switch-width);
+  height: var(--size-sky-switch-height);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+}
+
+.switch:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--fg);
+  opacity: 0;
+}
+
+.face {
+  position: relative;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--border-control);
+  border-radius: inherit;
+  background: var(--sky);
+}
+
+.scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.orb {
+  fill: color-mix(in srgb, var(--scene-moon) calc(var(--night) * 100%), var(--scene-sun));
+  stroke: var(--scene-ink);
+}
+
+.bite {
+  fill: var(--sky);
+  stroke: var(--scene-ink);
+}
+
+.rays {
+  fill: none;
+  stroke: var(--scene-ink);
+}
+
+.clouds {
+  fill: var(--scene-cloud);
+  stroke: var(--scene-ink);
+}
+
+.stars {
+  fill: var(--scene-star);
+}
+
+.stars path {
+  opacity: 0;
+}

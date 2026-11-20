@@ -1,0 +1,27 @@
+.confetti {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.piece {
+  position: absolute;
+  top: calc(var(--size-confetti) / -2);
+  left: calc(var(--size-confetti) / -2);
+  width: var(--size-confetti);
+  height: var(--size-confetti);
+  background: var(--tone-vivid);
+  opacity: 0;
+}
+
+.dot {
+  border-radius: var(--radius-pill);
+}
+
+.strip {
+  height: calc(var(--size-confetti) / 2);
+  border-radius: var(--radius-pill);
+}

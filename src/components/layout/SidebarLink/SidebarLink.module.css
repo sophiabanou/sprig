@@ -1,0 +1,27 @@
+.link {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--size-control);
+  padding: 0 var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  color: var(--fg-muted);
+  text-decoration: none;
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.link:hover {
+  color: var(--fg);
+}
+
+.link[aria-current="page"] {
+  color: var(--tone-fg);
+}
+
+.link:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}

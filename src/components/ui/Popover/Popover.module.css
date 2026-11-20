@@ -1,0 +1,11 @@
+.popover {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  padding: var(--space-3);
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-drawer);
+}

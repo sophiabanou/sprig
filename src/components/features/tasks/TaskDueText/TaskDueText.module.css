@@ -1,0 +1,10 @@
+.text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--fg-muted);
+}
+
+.overdue {
+  color: var(--danger);
+}

@@ -1,0 +1,39 @@
+/* Ink pill behind the selected option, where tabs use a pastel one */
+.indicator {
+  background: var(--primary);
+}
+
+.option {
+  --tone-fg: var(--primary-fg);
+
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-control-inner);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.option:hover {
+  color: var(--fg);
+}
+
+.option:has(.input:checked) {
+  color: var(--primary-fg);
+}
+
+.option:has(.input:focus-visible) {
+  box-shadow: var(--focus-ring);
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}

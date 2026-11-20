@@ -1,0 +1,11 @@
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-1);
+  color: var(--danger);
+}
+
+/* Sits on the first line of text when the message wraps */
+.icon {
+  margin-top: var(--space-half);
+}

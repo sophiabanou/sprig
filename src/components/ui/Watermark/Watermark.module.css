@@ -1,0 +1,30 @@
+/* A flat silhouette of an illustration in the current tone, with details cut out in the surface color */
+
+.watermark {
+  display: block;
+  fill: none;
+  opacity: var(--watermark-opacity);
+}
+
+.shadow {
+  display: none;
+}
+
+.body,
+.accent,
+.blush {
+  fill: var(--tone-bg);
+}
+
+.line {
+  stroke: var(--tone-bg);
+}
+
+.detail,
+.sparkle {
+  stroke: var(--surface);
+}
+
+.dot {
+  fill: var(--surface);
+}

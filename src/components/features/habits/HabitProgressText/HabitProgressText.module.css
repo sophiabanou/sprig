@@ -1,0 +1,23 @@
+.slot {
+  display: inline-grid;
+  font-variant-numeric: tabular-nums;
+}
+
+.slot > * {
+  grid-area: 1 / 1;
+}
+
+.text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--fg-muted);
+}
+
+.complete {
+  color: var(--success);
+}
+
+.sizer {
+  visibility: hidden;
+}

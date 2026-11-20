@@ -1,0 +1,248 @@
+/* Light theme */
+
+:root {
+  /* Surfaces */
+  --bg: #fcf9f5;
+  --surface: #ffffff;
+  --surface-muted: #f4f2fa;
+  --border: #e8e3ef;
+  --border-strong: #d4cde0;
+  --border-control: #8e889b;
+  /* Empty segments of a habit ring, lighter than a control border so the filled ones stand out */
+  --ring-track: var(--border-strong);
+
+  /* Text */
+  --fg: #16131e;
+  --fg-secondary: #403b4a;
+  --fg-muted: #6a6575;
+  --fg-subtle: #706b7b;
+  --fg-label: #42577f;
+
+  /* Accent */
+  --accent: #6741bf;
+  --accent-soft: #ebe8fc;
+  --accent-fg: #ffffff;
+
+  /* Primary action */
+  --primary: #16131e;
+  --primary-fg: #ffffff;
+
+  /* Tags: step 5 fill with step 70 ink */
+  --tag-lilac: #ebe8fc;   --tag-lilac-fg: #542f9c;
+  --tag-mint: #ddebe1;    --tag-mint-fg: #005d35;
+  --tag-peach: #ffe0cb;   --tag-peach-fg: #893012;
+  --tag-lemon: #ffe9cb;   --tag-lemon-fg: #814b17;
+  --tag-sky: #e7ecf5;     --tag-sky-fg: #1f42a1;
+  --tag-rose: #fde1e9;    --tag-rose-fg: #922f61;
+
+  /* Tag solids: the tag color that stands out on surfaces */
+  --tag-lilac-solid: var(--tag-lilac-fg);
+  --tag-mint-solid: var(--tag-mint-fg);
+  --tag-peach-solid: var(--tag-peach-fg);
+  --tag-lemon-solid: var(--tag-lemon-fg);
+  --tag-sky-solid: var(--tag-sky-fg);
+  --tag-rose-solid: var(--tag-rose-fg);
+
+  /* Tag vivids: step 30, used for color swatches. Shared by both themes */
+  --tag-lilac-vivid: #9f94ff;
+  --tag-mint-vivid: #33b17f;
+  --tag-peach-vivid: #f07c3a;
+  --tag-lemon-vivid: #f6a400;
+  --tag-sky-vivid: #84a9f1;
+  --tag-rose-vivid: #f573b4;
+
+  /* Illustration fills: only tones that need more contrast against the ink lines */
+  --tag-sky-illustration: var(--tag-sky);
+  --tag-lilac-illustration: var(--tag-lilac);
+  --tag-mint-illustration-accent: var(--tag-mint-vivid);
+
+  --on-vivid: #16131e;
+
+  /* Sky switch scene: aliases of the palette, so they follow the theme on their own */
+  --scene-day: var(--tag-sky-vivid);
+  --scene-night: var(--tag-lilac-fg);
+  --scene-sun: var(--tag-lemon-vivid);
+  --scene-moon: var(--tag-lilac);
+  --scene-star: var(--tag-lemon);
+  --scene-cloud: var(--tag-sky);
+  --scene-ink: var(--on-vivid);
+
+  /* Semantic */
+  --success: #007442;
+  --danger: #cf222e;
+
+  /* Type */
+  --font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --text-display: 5.2rem;
+  --text-title: 3.2rem;
+  --text-heading: 2rem;
+  --text-subtitle: 1.7rem;
+  --text-body: 1.4rem;
+  --text-button: 1.4rem;
+  --text-label: 1.3rem;
+  --text-caption: 1.3rem;
+
+  /* Shape & spacing */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-pill: 999px;
+  --space-half: 2px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-display-gap: 0.22em;
+
+  /* Sizes */
+  --size-icon-sm: 16px;
+  --size-icon-md: 20px;
+  --size-icon-lg: 24px;
+  /* Strength of the soft fill inside duotone icons, over the icon's own color */
+  --icon-fill-opacity: 0.22;
+  --size-illustration: 48px;
+  --size-logo: 36px;
+  --size-wordmark: 20px;
+  /* Moves the wordmark down so the body of its letters centers on the logo's checkbox */
+  --offset-wordmark: calc(var(--size-logo) * 0.1875 + var(--size-wordmark) * 0.052);
+  --size-confetti: 6px;
+  --size-checkbox: 22px;
+  --size-badge: 36px;
+  --size-control: 36px;
+  --size-control-lg: 48px;
+  /* An option inside a pill track, so the whole track is as tall as a control */
+  --size-control-inner: calc(var(--size-control) - 2 * var(--space-1) - 2px);
+  --size-number-input: 4rem;
+  --size-sidebar: 240px;
+  --size-content: 960px;
+  --size-sky-switch-width: 104px;
+  --size-sky-switch-height: 48px;
+  --size-ring-gap: 2px;
+  --size-ring: 4px;
+  --size-lift: 3px;
+  --size-drawer: 440px;
+  --size-sheet: 90dvh;
+  --size-grabber-width: 36px;
+  --size-grabber-height: 4px;
+  --size-ring-badge: 48px;
+  --size-ring-inner: 35px;
+  --size-scrollbar: 10px;
+  --size-watermark: 144px;
+  --size-empty: 112px;
+  --rotate-watermark: -14deg;
+  --watermark-opacity: 1;
+
+  /* Motion */
+  --duration-hover: 180ms;
+  --ease-hover: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  --shadow-sm: 0 1px 0 rgba(23, 21, 28, 0.04);
+  --shadow-drawer: 0 0 32px rgba(22, 19, 30, 0.12);
+  --scrim: rgba(22, 19, 30, 0.32);
+  --focus-ring: 0 0 0 3px rgba(103, 65, 191, 0.3);
+  /* Focus ring for controls on a --primary surface, such as the toast */
+  --focus-ring-inverse: 0 0 0 3px rgba(202, 198, 255, 0.7);
+
+  color-scheme: light;
+}
+
+/* Dark theme */
+:root[data-theme="dark"] {
+  --icon-fill-opacity: 0.3;
+  --bg: #131118;
+  --surface: #1b1922;
+  --surface-muted: #24212d;
+  --border: #2e2a38;
+  --border-strong: #3d3849;
+  --border-control: #736d82;
+  --ring-track: var(--border-control);
+  --fg: #eeecf3;
+  --fg-secondary: #cbc7d4;
+  --fg-muted: #a9a4b5;
+  --fg-subtle: #938ea0;
+  --fg-label: #9aabcc;
+  --accent: #cac6ff;
+  --accent-soft: #2a1b49;
+  --accent-fg: #131118;
+  --watermark-opacity: 0.16;
+  --primary: #eeecf3;
+  --primary-fg: #131118;
+
+  /* Tags: step 15 fill with step 85 ink, so tiles stay pastel */
+  --tag-lilac: #cac6ff;   --tag-lilac-fg: #351f5e;
+  --tag-mint: #9cd4b6;    --tag-mint-fg: #003925;
+  --tag-peach: #ffb27f;   --tag-peach-fg: #4a1710;
+  --tag-lemon: #ffcc78;   --tag-lemon-fg: #452210;
+  --tag-sky: #c0d1f3;     --tag-sky-fg: #182768;
+  --tag-rose: #ffb4d3;    --tag-rose-fg: #4b142d;
+
+  /* Tag solids: the tag color that stands out on surfaces */
+  --tag-lilac-solid: var(--tag-lilac);
+  --tag-mint-solid: var(--tag-mint);
+  --tag-peach-solid: var(--tag-peach);
+  --tag-lemon-solid: var(--tag-lemon);
+  --tag-sky-solid: var(--tag-sky);
+  --tag-rose-solid: var(--tag-rose);
+
+  --tag-sky-illustration: #94aee2;
+  --tag-lilac-illustration: #7b6fe0;
+  --tag-mint-illustration-accent: #258c5f;
+
+  --on-vivid: #131118;
+
+  --success: #9cd4b6;
+  --danger: #f85149;
+  --focus-ring: 0 0 0 3px rgba(202, 198, 255, 0.35);
+  --focus-ring-inverse: 0 0 0 3px rgba(103, 65, 191, 0.7);
+  --shadow-drawer: 0 0 32px rgba(0, 0, 0, 0.48);
+  --scrim: rgba(0, 0, 0, 0.56);
+
+  color-scheme: dark;
+}
+
+/* Type scale below 768 */
+@media (max-width: 768px) {
+  :root {
+    --text-display: 3.6rem;
+    --text-title: 2.6rem;
+    --text-heading: 1.8rem;
+    --text-subtitle: 1.6rem;
+    --text-body: 1.3rem;
+    --text-button: 1.3rem;
+    --text-label: 1.2rem;
+    --text-caption: 1.2rem;
+  }
+}
+
+/* Smaller illustrations below 576 */
+@media (max-width: 576px) {
+  :root {
+    --size-illustration: 40px;
+    --size-watermark: 120px;
+  }
+}
+
+/* Hover transitions turn off with reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-hover: 0ms;
+  }
+}
+
+/* Base: 62.5% makes 1rem equal 10px at the default browser size */
+html {
+  font-size: 62.5%;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-family);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}

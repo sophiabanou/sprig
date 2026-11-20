@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-4);
+}
+
+.action {
+  display: inline-flex;
+}
+
+.title:focus {
+  outline: none;
+}
+
+.visual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-display-gap);
+}
+
+.accent {
+  color: var(--tone-solid);
+}
+
+.description {
+  color: var(--fg-secondary);
+}

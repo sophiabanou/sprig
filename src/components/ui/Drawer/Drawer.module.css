@@ -1,0 +1,78 @@
+.dialog {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: clip;
+}
+
+.dialog::backdrop {
+  background: transparent;
+}
+
+:global(html):has(.dialog[open]) {
+  overflow: hidden;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim);
+}
+
+/* Side drawer */
+.panel {
+  --drawer-from-x: 100%;
+  --drawer-from-y: 0%;
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: var(--size-drawer);
+  box-sizing: border-box;
+  padding: var(--space-6);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: var(--shadow-drawer);
+}
+
+.grabber {
+  display: none;
+}
+
+/* Bottom sheet */
+@media (max-width: 576px) {
+  .panel {
+    --drawer-from-x: 0%;
+    --drawer-from-y: 100%;
+
+    top: auto;
+    left: 0;
+    max-width: none;
+    max-height: var(--size-sheet);
+    padding: var(--space-4);
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-2);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .grabber {
+    display: block;
+    width: var(--size-grabber-width);
+    height: var(--size-grabber-height);
+    margin: 0 auto var(--space-3);
+    background: var(--border-strong);
+    border-radius: var(--radius-pill);
+  }
+}

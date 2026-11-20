@@ -1,0 +1,78 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.label {
+  color: var(--fg-label);
+}
+
+.anchor {
+  display: flex;
+}
+
+/* Matches the text field, with a tint on hover since it opens a dropdown */
+.trigger {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  min-height: var(--size-control);
+  padding: 0 var(--space-4);
+  color: var(--fg);
+  text-align: start;
+  background: var(--surface);
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-hover) var(--ease-hover),
+    border-color var(--duration-hover) var(--ease-hover),
+    box-shadow var(--duration-hover) var(--ease-hover);
+}
+
+.trigger:hover {
+  background: var(--surface-muted);
+}
+
+.trigger:focus-visible {
+  outline: none;
+  border-color: var(--fg);
+  box-shadow:
+    inset 0 0 0 1px var(--fg),
+    var(--focus-ring);
+}
+
+.trigger[data-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.trigger[data-invalid="true"]:focus-visible {
+  box-shadow:
+    inset 0 0 0 1px var(--danger),
+    var(--focus-ring);
+}
+
+.icon {
+  color: var(--fg-muted);
+}
+
+.value,
+.placeholder {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--fg-muted);
+}
+
+.chevron {
+  color: var(--fg-muted);
+}

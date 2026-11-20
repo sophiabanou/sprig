@@ -1,0 +1,30 @@
+.shell {
+  display: grid;
+  grid-template-columns: var(--size-sidebar) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.main {
+  min-width: 0;
+  overflow-x: clip;
+  padding: var(--space-8) var(--space-6);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  max-width: var(--size-content);
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .shell {
+    display: block;
+  }
+
+  .main {
+    padding: var(--space-6) var(--space-4);
+  }
+}

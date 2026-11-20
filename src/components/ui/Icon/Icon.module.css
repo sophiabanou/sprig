@@ -1,0 +1,35 @@
+.icon {
+  flex: none;
+  display: block;
+}
+
+.sm {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.md {
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+
+.lg {
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+}
+
+.line {
+  fill: none;
+  stroke: currentColor;
+}
+
+.fill {
+  fill: currentColor;
+  fill-opacity: var(--icon-fill-opacity);
+  stroke: currentColor;
+}
+
+.solid {
+  fill: currentColor;
+  stroke: currentColor;
+}

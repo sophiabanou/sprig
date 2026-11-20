@@ -1,0 +1,41 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  width: var(--size-checkbox);
+  height: var(--size-checkbox);
+}
+
+.input {
+  appearance: none;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.input:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.input:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.check {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  color: var(--accent-fg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.input:checked + .check {
+  opacity: 1;
+}

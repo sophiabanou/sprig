@@ -1,0 +1,7 @@
+.wordmark {
+  flex: none;
+  display: block;
+  height: var(--size-wordmark);
+  width: auto;
+  fill: var(--fg);
+}

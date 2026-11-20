@@ -1,0 +1,67 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  width: var(--size-control);
+  height: var(--size-control);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Fits inside a control, so a stepper stays as tall as a text field */
+.sm {
+  width: var(--size-control-inner);
+  height: var(--size-control-inner);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Ink shape behind the face, revealed when the face lifts */
+.shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--fg);
+  opacity: 0;
+}
+
+.face {
+  position: relative;
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--border-control);
+  border-radius: inherit;
+}
+
+/* Buttons without the lift only tint on hover */
+.flat .face {
+  transition: background-color var(--duration-hover) var(--ease-hover);
+}
+
+.flat:not([aria-disabled="true"]):hover .face {
+  background: var(--surface-muted);
+}
+
+.button[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.button[aria-disabled="true"] .face {
+  color: var(--fg-subtle);
+  border-color: var(--border);
+}
+
+/* Flat buttons sit inside a control, so the control's border is the only outline */
+.flat .face,
+.flat[aria-disabled="true"] .face {
+  border-color: transparent;
+}

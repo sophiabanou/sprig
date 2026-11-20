@@ -1,0 +1,19 @@
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Pastel pill that slides behind the selected tab */
+.indicator {
+  background: var(--tone-bg);
+}
+
+.panel {
+  border-radius: var(--radius-md);
+}
+
+.panel:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}

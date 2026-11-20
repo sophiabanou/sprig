@@ -1,0 +1,13 @@
+.stack {
+  display: inline-grid;
+}
+
+.ghost,
+.typed {
+  grid-area: 1 / 1;
+}
+
+.ghost {
+  visibility: hidden;
+}
+

@@ -1,0 +1,46 @@
+/* Tone utilities. Children read --tone-bg and --tone-fg (a fill and the ink on it), --tone-solid (the tone on a surface) and --tone-vivid (a stronger swatch shade). Illustrations read --tone-illustration and --tone-illustration-accent when a tone sets them. */
+
+.toneLilac {
+  --tone-bg: var(--tag-lilac);
+  --tone-fg: var(--tag-lilac-fg);
+  --tone-solid: var(--tag-lilac-solid);
+  --tone-vivid: var(--tag-lilac-vivid);
+  --tone-illustration: var(--tag-lilac-illustration);
+}
+
+.toneMint {
+  --tone-bg: var(--tag-mint);
+  --tone-fg: var(--tag-mint-fg);
+  --tone-solid: var(--tag-mint-solid);
+  --tone-vivid: var(--tag-mint-vivid);
+  --tone-illustration-accent: var(--tag-mint-illustration-accent);
+}
+
+.tonePeach {
+  --tone-bg: var(--tag-peach);
+  --tone-fg: var(--tag-peach-fg);
+  --tone-solid: var(--tag-peach-solid);
+  --tone-vivid: var(--tag-peach-vivid);
+}
+
+.toneLemon {
+  --tone-bg: var(--tag-lemon);
+  --tone-fg: var(--tag-lemon-fg);
+  --tone-solid: var(--tag-lemon-solid);
+  --tone-vivid: var(--tag-lemon-vivid);
+}
+
+.toneSky {
+  --tone-bg: var(--tag-sky);
+  --tone-fg: var(--tag-sky-fg);
+  --tone-solid: var(--tag-sky-solid);
+  --tone-vivid: var(--tag-sky-vivid);
+  --tone-illustration: var(--tag-sky-illustration);
+}
+
+.toneRose {
+  --tone-bg: var(--tag-rose);
+  --tone-fg: var(--tag-rose-fg);
+  --tone-solid: var(--tag-rose-solid);
+  --tone-vivid: var(--tag-rose-vivid);
+}
