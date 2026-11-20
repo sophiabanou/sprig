@@ -10,6 +10,7 @@ import styles from './Sidebar.module.css'
 const NAV_ITEMS = [
   { route: ROUTES.HABITS, label: 'Habits', tone: 'peach' },
   { route: ROUTES.TASKS, label: 'Tasks', tone: 'sky' },
+  { route: ROUTES.NOTES, label: 'Notes', tone: 'lemon' },
 ]
 
 const SECONDARY_ITEMS = [{ route: ROUTES.SETTINGS, label: 'Settings', tone: 'lilac', icon: 'sliders' }]

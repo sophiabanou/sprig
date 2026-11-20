@@ -19,9 +19,34 @@
   margin: 0 auto;
 }
 
+.fullHeight {
+  height: 100dvh;
+  min-height: 0;
+}
+
+.fullHeight .main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.fullHeight .content {
+  flex: 1;
+  min-height: 0;
+}
+
 @media (max-width: 768px) {
   .shell {
     display: block;
+  }
+
+  .fullHeight {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fullHeight .main {
+    flex: 1;
   }
 
   .main {

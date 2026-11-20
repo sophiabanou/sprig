@@ -3,6 +3,7 @@ import { useSyncExternalStore } from 'react'
 export const ROUTES = {
   HABITS: 'habits',
   TASKS: 'tasks',
+  NOTES: 'notes',
   SETTINGS: 'settings',
 }
 

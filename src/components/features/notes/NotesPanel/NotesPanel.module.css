@@ -1,0 +1,30 @@
+/* The note list and the editor share one card that fills the rest of the window, each scrolling on its own */
+.workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: var(--size-note-list) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  min-height: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+@media (max-width: 768px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workspace[data-view="list"] .editor,
+  .workspace[data-view="editor"] > :first-child {
+    display: none;
+  }
+}

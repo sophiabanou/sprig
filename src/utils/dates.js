@@ -47,6 +47,28 @@ export function formatDueLabel(dueKey = '', todayKey = toDateKey()) {
   return `Due ${SHORT_DATE_FORMAT.format(date)}`
 }
 
+/* Note dates */
+
+const TIME_FORMAT = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit' })
+const NUMERIC_DATE_FORMAT = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' })
+const STAMP_DATE_FORMAT = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+
+/* The stamp above a note, for example 21 November 2026 at 10:42 */
+export function formatNoteStamp(timestamp = 0) {
+  const date = new Date(timestamp)
+  return `${STAMP_DATE_FORMAT.format(date)} at ${TIME_FORMAT.format(date)}`
+}
+
+/* The date in the note list: the time today, the weekday within a week, the full date after that */
+export function formatNoteListDate(timestamp = 0, todayKey = toDateKey()) {
+  const date = new Date(timestamp)
+  const days = daysBetween(toDateKey(date), todayKey)
+  if (days === 0) return TIME_FORMAT.format(date)
+  if (days === 1) return 'Yesterday'
+  if (days < 7) return WEEKDAY_FORMAT.format(date)
+  return NUMERIC_DATE_FORMAT.format(date)
+}
+
 /* Calendar helpers */
 
 const CALENDAR_DAYS = 42
