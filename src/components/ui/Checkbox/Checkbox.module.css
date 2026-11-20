@@ -1,4 +1,4 @@
-.wrapper {
+.box {
   position: relative;
   display: inline-flex;
   flex: none;
@@ -17,25 +17,36 @@
   cursor: pointer;
 }
 
-.input:checked {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
 .input:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
 }
 
+/* The checked fill sits over the box so useCheckPop can pop it in */
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.input:checked ~ .fill {
+  transform: none;
+}
+
 .check {
   position: absolute;
   inset: 0;
-  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--accent-fg);
   opacity: 0;
   pointer-events: none;
 }
 
-.input:checked + .check {
+.input:checked ~ .check {
   opacity: 1;
 }

@@ -17,15 +17,27 @@ function getDueDate(choice = DUE_CHOICE.NONE, date = '') {
   return null
 }
 
-export function useTaskForm({ onSubmit, initialDueChoice = DUE_CHOICE.NONE } = {}) {
-  const [title, setTitle] = useState('')
-  const [dueChoice, setDueChoice] = useState(initialDueChoice)
-  const [date, setDate] = useState('')
+function getDueChoice(dueDate = null) {
+  if (!dueDate) return DUE_CHOICE.NONE
+  if (dueDate === toDateKey()) return DUE_CHOICE.TODAY
+  if (dueDate === toDateKey(endOfWeek())) return DUE_CHOICE.SUNDAY
+  return DUE_CHOICE.DATE
+}
 
+/* Starts empty for a new task, or from the given task when editing one. A task being edited may keep its own past date. */
+export function useTaskForm({ onSubmit, initialDueChoice = DUE_CHOICE.NONE, task = null } = {}) {
+  const [title, setTitle] = useState(task?.title ?? '')
+  const [description, setDescription] = useState(task?.description ?? '')
+  const [dueChoice, setDueChoice] = useState(task ? getDueChoice(task.dueDate) : initialDueChoice)
+  const [date, setDate] = useState(task?.dueDate ?? '')
+
+  const keptDate = task?.dueDate ?? ''
+  const validate = useCallback((formValues) => validateTask(formValues, keptDate), [keptDate])
   const values = useMemo(() => ({ title, isDateChosen: dueChoice === DUE_CHOICE.DATE, date }), [title, dueChoice, date])
-  const { formRef, errors, checkForSubmit } = useFormValidation(validateTask, values)
+  const { formRef, errors, checkForSubmit } = useFormValidation(validate, values)
 
   const handleTitleChange = useCallback((event) => setTitle(event.target.value), [])
+  const handleDescriptionChange = useCallback((event) => setDescription(event.target.value), [])
   const handleDueChoiceChange = useCallback((value) => setDueChoice(value), [])
   const handleDateChange = useCallback((dateKey = '') => setDate(dateKey), [])
 
@@ -33,19 +45,22 @@ export function useTaskForm({ onSubmit, initialDueChoice = DUE_CHOICE.NONE } = {
     (event) => {
       event.preventDefault()
       if (!checkForSubmit()) return
-      onSubmit?.({ title, dueDate: getDueDate(dueChoice, date) })
+      onSubmit?.({ title, description, dueDate: getDueDate(dueChoice, date) })
       setTitle('')
+      setDescription('')
     },
-    [title, dueChoice, date, onSubmit, checkForSubmit],
+    [title, description, dueChoice, date, onSubmit, checkForSubmit],
   )
 
   return {
     formRef,
     errors,
     title,
+    description,
     dueChoice,
     date,
     handleTitleChange,
+    handleDescriptionChange,
     handleDueChoiceChange,
     handleDateChange,
     handleSubmit,

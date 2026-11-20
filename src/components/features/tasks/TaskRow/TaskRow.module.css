@@ -1,8 +1,15 @@
 .row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
+}
+
+/* The first line lines up with the action buttons, and the checkbox centers on it */
+.checkbox {
+  display: flex;
+  align-items: center;
+  height: var(--size-control);
 }
 
 .text {
@@ -13,11 +20,37 @@
 }
 
 .title {
+  padding-top: calc((var(--size-control) - 1lh) / 2);
   overflow-wrap: anywhere;
   cursor: pointer;
 }
 
+/*
+  --strike runs from 0 to 1, tweened by useStrikeThrough. The line is a background on an inline span,
+  so on a title that wraps it sweeps one line after the next.
+*/
+.strike {
+  --strike: 0;
+  color: color-mix(in srgb, var(--fg-muted) calc(var(--strike) * 100%), var(--fg));
+  background-image: linear-gradient(var(--fg-muted), var(--fg-muted));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: calc(var(--strike) * 100%) var(--size-strike);
+}
+
 .done {
+  --strike: 1;
+}
+
+.description {
+  margin-top: var(--space-1);
+  white-space: pre-line;
   color: var(--fg-muted);
-  text-decoration: line-through;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  flex: none;
+  display: flex;
+  gap: var(--space-1);
 }

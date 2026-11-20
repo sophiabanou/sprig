@@ -6,13 +6,14 @@ export const useTaskStore = create(
     (set, get) => ({
       tasks: [],
 
-      addTask: ({ title = '', dueDate = null } = {}) => {
+      addTask: ({ title = '', description = '', dueDate = null } = {}) => {
         const trimmedTitle = title.trim()
         if (!trimmedTitle) return null
 
         const task = {
           id: crypto.randomUUID(),
           title: trimmedTitle,
+          description: description.trim(),
           dueDate,
           isDone: false,
           createdAt: Date.now(),

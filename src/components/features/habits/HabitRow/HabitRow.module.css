@@ -37,3 +37,28 @@
   display: flex;
   gap: var(--space-1);
 }
+
+/* Simple rows line up like tasks: the control and the name center on the height of the action buttons */
+.simple {
+  align-items: flex-start;
+}
+
+.control {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: var(--size-control);
+}
+
+.simple .name {
+  padding-top: calc((var(--size-control) - 1lh) / 2);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* Rows without a checkbox leave its space empty, so every name starts at the same place */
+.indented .text {
+  padding-left: calc(var(--size-checkbox) + var(--space-3));
+}

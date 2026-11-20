@@ -17,11 +17,14 @@ const DUE_OPTIONS = [
   { value: DUE_CHOICE.DATE, label: 'Pick a date' },
 ]
 
-function TaskForm({ initialDueChoice = DUE_CHOICE.NONE, headerAction = null, onAdd } = {}) {
+/* Adds a new task, or edits the given one when task is set */
+function TaskForm({ task = null, initialDueChoice = DUE_CHOICE.NONE, headerAction = null, onAdd, onSave } = {}) {
   const addTask = useTaskStore((state) => state.addTask)
+  const updateTask = useTaskStore((state) => state.updateTask)
   const headingId = useId()
   const dueName = useId()
   const today = useToday()
+  const isEditing = Boolean(task)
 
   const handleCreate = useCallback(
     (task = {}) => {
@@ -31,18 +34,45 @@ function TaskForm({ initialDueChoice = DUE_CHOICE.NONE, headerAction = null, onA
     [addTask, onAdd],
   )
 
-  const { formRef, errors, title, dueChoice, date, handleTitleChange, handleDueChoiceChange, handleDateChange, handleSubmit } =
-    useTaskForm({ onSubmit: handleCreate, initialDueChoice })
+  const handleUpdate = useCallback(
+    (values = {}) => {
+      const changes = { ...values, title: values.title.trim(), description: values.description.trim() }
+      updateTask(task.id, changes)
+      onSave?.(changes)
+    },
+    [task, updateTask, onSave],
+  )
+
+  const {
+    formRef,
+    errors,
+    title,
+    description,
+    dueChoice,
+    date,
+    handleTitleChange,
+    handleDescriptionChange,
+    handleDueChoiceChange,
+    handleDateChange,
+    handleSubmit,
+  } = useTaskForm({ onSubmit: isEditing ? handleUpdate : handleCreate, initialDueChoice, task })
 
   return (
     <form ref={formRef} className={styles.form} aria-labelledby={headingId} onSubmit={handleSubmit} noValidate>
       <div className={styles.header}>
         <h2 id={headingId} className={`${styles.title} textHeadingBold`}>
-          New task
+          {isEditing ? 'Edit task' : 'New task'}
         </h2>
         {headerAction}
       </div>
       <TextField label="Task" value={title} onChange={handleTitleChange} error={errors.title} isRequired isAutoFocused />
+      <TextField
+        label="Description"
+        value={description}
+        onChange={handleDescriptionChange}
+        isMultiline
+        isOptional
+      />
       <SegmentedControl
         legend="When"
         name={dueName}
@@ -54,8 +84,8 @@ function TaskForm({ initialDueChoice = DUE_CHOICE.NONE, headerAction = null, onA
         <DateField label="Date" min={today} value={date} onChange={handleDateChange} error={errors.date} />
       </FieldReveal>
       <Button type="submit" size="lg" className={styles.submit}>
-        <Icon name="plus" />
-        Add task
+        <Icon name={isEditing ? 'check' : 'plus'} />
+        {isEditing ? 'Save changes' : 'Add task'}
       </Button>
     </form>
   )
