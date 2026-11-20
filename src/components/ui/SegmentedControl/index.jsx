@@ -6,12 +6,20 @@ import styles from './SegmentedControl.module.css'
 
 const INDICATOR_OPTIONS = { itemSelector: '[data-toggle-option]', activeSelector: '[data-toggle-option]:has(input:checked)' }
 
-function SegmentedControl({ legend = '', name = '', options = [], value = '', onChange } = {}) {
+function SegmentedControl({
+  legend = '',
+  isLegendHidden = false,
+  describedBy,
+  name = '',
+  options = [],
+  value = '',
+  onChange,
+} = {}) {
   const handleChange = useCallback((event) => onChange?.(event.target.value), [onChange])
   const { listRef, indicatorRef } = useSlidingIndicator(value, INDICATOR_OPTIONS)
 
   return (
-    <Fieldset legend={legend}>
+    <Fieldset legend={legend} isLegendHidden={isLegendHidden} describedBy={describedBy}>
       <PillTrack trackRef={listRef} indicatorRef={indicatorRef} indicatorClassName={styles.indicator}>
         {options.map((option) => (
           <label key={option.value} className={`${styles.option} textButton`} data-toggle-option>

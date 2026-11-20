@@ -1,8 +1,8 @@
 import { memo, useId } from 'react'
 import { useThemeStore } from '../../../../store/useThemeStore'
 import TypewriterText from '../../../ui/TypewriterText'
+import SettingCard from '../SettingCard'
 import SkySwitch from '../SkySwitch'
-import styles from './ThemeSetting.module.css'
 
 /* Each text is split into parts, and only the parts that differ are retyped */
 const COPY = {
@@ -30,17 +30,16 @@ function ThemeSetting() {
   const copy = isDark ? COPY.dark : COPY.light
 
   return (
-    <div className={styles.card}>
-      <div className={styles.text}>
-        <label id={titleId} htmlFor={controlId} className={`${styles.title} textHeading`}>
-          <TypewriterText parts={copy.title} />
-        </label>
-        <p id={descriptionId} className={`${styles.description} textBody`}>
-          <TypewriterText parts={copy.description} delay={DESCRIPTION_DELAY} speed={DESCRIPTION_SPEED} />
-        </p>
-      </div>
-      <SkySwitch id={controlId} isNight={isDark} labelledBy={titleId} describedBy={descriptionId} onChange={toggleTheme} />
-    </div>
+    <SettingCard
+      title={<TypewriterText parts={copy.title} />}
+      titleId={titleId}
+      controlId={controlId}
+      description={<TypewriterText parts={copy.description} delay={DESCRIPTION_DELAY} speed={DESCRIPTION_SPEED} />}
+      descriptionId={descriptionId}
+      control={
+        <SkySwitch id={controlId} isNight={isDark} labelledBy={titleId} describedBy={descriptionId} onChange={toggleTheme} />
+      }
+    />
   )
 }
 
