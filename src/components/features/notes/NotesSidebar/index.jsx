@@ -1,30 +1,23 @@
-import { memo, useId } from 'react'
+import { memo, useMemo } from 'react'
+import { useListEntrance } from '../../../../hooks/useListEntrance'
 import { useNoteGroups } from '../../../../hooks/useNoteGroups'
 import { useToday } from '../../../../hooks/useToday'
+import { countNotes } from '../../../../utils/notes'
 import SearchField from '../../../ui/SearchField'
 import VisuallyHidden from '../../../ui/VisuallyHidden'
-import NoteListItem from '../NoteListItem'
+import NoteGroup from '../NoteGroup'
 import styles from './NotesSidebar.module.css'
 
-function countNotes(count = 0) {
-  return count === 1 ? '1 note' : `${count} notes`
-}
-
 function NotesSidebar({ notes = [], selectedId = null, query = '', listRef = null, onQueryChange, onSelect } = {}) {
-  const headingId = useId()
   const today = useToday()
   const { groups, matchCount } = useNoteGroups(notes, query)
   const isSearching = Boolean(query.trim())
+  const groupKeys = useMemo(() => groups.map((group) => group.id), [groups])
+  const groupsRef = useListEntrance(groupKeys, query)
 
   return (
-    <section className={styles.sidebar} aria-labelledby={headingId}>
-      <div className={styles.header}>
-        <div className={styles.heading}>
-          <h2 id={headingId} className="textHeadingBold">
-            Notes
-          </h2>
-          <span className={`${styles.count} textCaption`}>{countNotes(notes.length)}</span>
-        </div>
+    <div className={styles.sidebar}>
+      <div className={styles.search}>
         <SearchField label="Search" value={query} onChange={onQueryChange} />
         <VisuallyHidden role="status">{isSearching ? `${countNotes(matchCount)} found` : ''}</VisuallyHidden>
       </div>
@@ -32,24 +25,20 @@ function NotesSidebar({ notes = [], selectedId = null, query = '', listRef = nul
         {isSearching && matchCount === 0 && (
           <p className={`${styles.empty} textBody`}>No notes match your search.</p>
         )}
-        {groups.map((group) => (
-          <div key={group.id} className={styles.group}>
-            <h3 className={`${styles.groupTitle} textLabel`}>{group.label}</h3>
-            <ul className={styles.list}>
-              {group.notes.map((note) => (
-                <NoteListItem
-                  key={note.id}
-                  note={note}
-                  today={today}
-                  isSelected={note.id === selectedId}
-                  onSelect={onSelect}
-                />
-              ))}
-            </ul>
-          </div>
-        ))}
+        <div ref={groupsRef} className={styles.groups}>
+          {groups.map((group) => (
+            <NoteGroup
+              key={group.id}
+              group={group}
+              today={today}
+              selectedId={selectedId}
+              query={query}
+              onSelect={onSelect}
+            />
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   )
 }
 

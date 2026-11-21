@@ -22,17 +22,10 @@
   box-shadow: var(--focus-ring);
 }
 
-/* The open note gets the tone fill and an ink bar on its edge, so it is not shown by color alone */
+/* The open note gets the tone fill */
 .item[aria-current="true"] {
   color: var(--tone-fg);
   background: var(--tone-bg);
-  box-shadow: inset var(--size-note-marker) 0 0 var(--tone-fg);
-}
-
-.item[aria-current="true"]:focus-visible {
-  box-shadow:
-    inset var(--size-note-marker) 0 0 var(--tone-fg),
-    var(--focus-ring);
 }
 
 .title,

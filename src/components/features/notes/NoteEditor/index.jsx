@@ -20,25 +20,6 @@ function NoteEditor({ note = {}, isAutoFocused = false, onBack, onDelete } = {})
   const handlePin = useCallback(() => togglePin(id), [id, togglePin])
   const handleDelete = useCallback(() => onDelete?.(note), [note, onDelete])
 
-  const backButton = useMemo(
-    () => (
-      <span className={styles.back}>
-        <IconButton label="Back to notes" icon="chevronLeft" hasLift={false} onClick={onBack} />
-      </span>
-    ),
-    [onBack],
-  )
-
-  const noteActions = useMemo(
-    () => (
-      <>
-        <IconButton label="Pin note" icon="pin" hasLift={false} isPressed={isPinned} onClick={handlePin} />
-        <IconButton label="Delete note" icon="trash" hasLift={false} onClick={handleDelete} />
-      </>
-    ),
-    [isPinned, handlePin, handleDelete],
-  )
-
   const stamp = useMemo(
     () => (
       <time dateTime={new Date(updatedAt).toISOString()} className={`${styles.stamp} textCaption`}>
@@ -50,14 +31,20 @@ function NoteEditor({ note = {}, isAutoFocused = false, onBack, onDelete } = {})
 
   return (
     <div className={styles.note}>
+      <div className={styles.bar}>
+        <span className={styles.back}>
+          <IconButton label="Back to notes" icon="chevronLeft" hasLift={false} onClick={onBack} />
+        </span>
+        <div className={styles.actions}>
+          <IconButton label="Pin note" icon="pin" hasLift={false} isPressed={isPinned} onClick={handlePin} />
+          <IconButton label="Delete note" icon="trash" hasLift={false} onClick={handleDelete} />
+        </div>
+      </div>
       <RichTextEditor
         initialValue={body}
         label="Note"
         titlePlaceholder="Title"
-        placeholder="Start writing"
         editorRef={editorRef}
-        barStart={backButton}
-        barEnd={noteActions}
         header={stamp}
         onChange={handleChange}
       />

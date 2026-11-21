@@ -5,8 +5,17 @@ const BLOCK_PREFIX = /^(\s*)(#{1,6}\s*|[-*+]\s+\[[ xX]\]\s+|[-*+]\s+|\d+[.)]\s+|
 
 const MONTH_FORMAT = new Intl.DateTimeFormat('en-GB', { month: 'long' })
 
+const ENTITIES = { nbsp: ' ', amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" }
+
+/* The editor saves empty lines as &nbsp; and escapes symbols like & and <, so they are turned back into text */
+function decodeEntities(text = '') {
+  return text
+    .replace(/&(nbsp|amp|lt|gt|quot|apos);/g, (match, name) => ENTITIES[name])
+    .replace(/&#(\d+);/g, (match, code) => String.fromCodePoint(Number(code)))
+}
+
 function toPlainLine(line = '') {
-  return line
+  return decodeEntities(line)
     .replace(BLOCK_PREFIX, '')
     .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
     .replace(/[*_~`\\]+/g, '')
@@ -27,7 +36,7 @@ export function getNotePreview(body = '') {
 }
 
 export function matchesNote(note = {}, query = '') {
-  return note.body?.toLowerCase().includes(query.trim().toLowerCase())
+  return getPlainLines(note.body).join(' ').toLowerCase().includes(query.trim().toLowerCase())
 }
 
 function getGroup(timestamp = 0, todayKey = toDateKey()) {
@@ -58,4 +67,9 @@ export function groupNotes(notes = [], todayKey = toDateKey()) {
       else groups.push({ ...group, notes: [note] })
     })
   return groups
+}
+
+
+export function countNotes(count = 0) {
+  return count === 1 ? '1 note' : `${count} notes`
 }

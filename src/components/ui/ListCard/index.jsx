@@ -3,8 +3,7 @@ import { useCompleteAnnouncement } from '../../../hooks/useCompleteAnnouncement'
 import { useEmptyEntrance } from '../../../hooks/useEmptyEntrance'
 import { useListEntrance } from '../../../hooks/useListEntrance'
 import { getToneClass } from '../../../utils/tones'
-import CountTag from '../CountTag'
-import Illustration from '../Illustration'
+import ListHeader from '../ListHeader'
 import Watermark from '../Watermark'
 import styles from './ListCard.module.css'
 
@@ -27,17 +26,7 @@ function ListCard({
 
   return (
     <section className={`${styles.section} ${getToneClass(tone)}`} aria-labelledby={headingId}>
-      <div className={styles.header} data-reveal="list-heading">
-        {illustration && <Illustration name={illustration} />}
-        <h2 id={headingId} className="textHeadingBold">
-          {title}
-        </h2>
-        {meta && (
-          <span key={title} className={styles.meta}>
-            <CountTag label={meta} isComplete={isComplete} />
-          </span>
-        )}
-      </div>
+      <ListHeader id={headingId} title={title} illustration={illustration} meta={meta} isComplete={isComplete} />
       <div ref={bodyRef} className={isEmpty ? styles.card : undefined} data-reveal="list-body">
         {isEmpty ? (
           <div className={styles.empty}>

@@ -22,26 +22,6 @@ export const ICONS = {
     { kind: 'line', d: ['M10 6h10', 'M10 12h10', 'M10 18h10'] },
     { kind: 'solid', d: [circle(5, 6, 1), circle(5, 12, 1), circle(5, 18, 1)] },
   ],
-  heading: [{ kind: 'line', d: ['M6 5v14', 'M18 5v14', 'M6 12h12'] }],
-  subheading: [{ kind: 'line', d: ['M8 8v11', 'M16 8v11', 'M8 13.5h8'] }],
-  bold: [{ kind: 'fill', d: ['M7 5h5.5a3.5 3.5 0 0 1 0 7H7z', 'M7 12h6.5a3.5 3.5 0 0 1 0 7H7z'] }],
-  italic: [{ kind: 'line', d: ['M11 5h7', 'M6 19h7', 'M14.5 5l-5 14'] }],
-  listNumbered: [
-    { kind: 'line', d: ['M11 6h9', 'M11 12h9', 'M11 18h9', 'M4.5 4.5l1.5-1v5', 'M4 14a1.5 1.5 0 1 1 3 .5L4 18h3'] },
-  ],
-  checklist: [
-    { kind: 'fill', d: ['M4 4h6v6H4z', 'M4 14h6v6H4z'] },
-    { kind: 'line', d: ['M5.5 7l1.2 1.2L9 5.7', 'M13 7h7', 'M13 17h7'] },
-  ],
-  link: [
-    {
-      kind: 'line',
-      d: [
-        'M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1',
-        'M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1',
-      ],
-    },
-  ],
   search: [
     { kind: 'fill', d: circle(10.5, 10.5, 6) },
     { kind: 'line', d: 'M15 15l5 5' },
