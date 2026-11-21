@@ -4,7 +4,7 @@ import Icon from '../Icon'
 import styles from './IconButton.module.css'
 
 /* Uses aria-disabled instead of disabled so focus stays on the button when it becomes unavailable. */
-function IconButton({ label = '', icon = '', size = 'md', hasLift = true, onClick, isDisabled = false } = {}) {
+function IconButton({ label = '', icon = '', size = 'md', hasLift = true, onClick, isDisabled = false, isPressed } = {}) {
   const { buttonRef, faceRef, shadowRef } = useLiftHover(isDisabled || !hasLift)
 
   const handleClick = useCallback(() => {
@@ -18,6 +18,7 @@ function IconButton({ label = '', icon = '', size = 'md', hasLift = true, onClic
       className={`${styles.button} ${styles[size]} ${hasLift ? '' : styles.flat}`}
       aria-label={label}
       aria-disabled={isDisabled}
+      aria-pressed={isPressed}
       onClick={handleClick}
     >
       <span ref={shadowRef} className={styles.shadow} aria-hidden="true" />

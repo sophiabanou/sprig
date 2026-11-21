@@ -22,6 +22,14 @@ export const ICONS = {
     { kind: 'line', d: ['M10 6h10', 'M10 12h10', 'M10 18h10'] },
     { kind: 'solid', d: [circle(5, 6, 1), circle(5, 12, 1), circle(5, 18, 1)] },
   ],
+  search: [
+    { kind: 'fill', d: circle(10.5, 10.5, 6) },
+    { kind: 'line', d: 'M15 15l5 5' },
+  ],
+  pin: [
+    { kind: 'fill', d: 'M9 4h6l-1 6 3 3H7l3-3z' },
+    { kind: 'line', d: 'M12 13v7' },
+  ],
   trash: [
     { kind: 'fill', d: 'M6 7h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2z' },
     { kind: 'line', d: ['M4 7h16', 'M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2', 'M10 11v6', 'M14 11v6'] },

@@ -65,3 +65,10 @@
 .flat[aria-disabled="true"] .face {
   border-color: transparent;
 }
+
+/* A toggle that is on gets the accent fill and an ink outline, so its state is not shown by color alone */
+.button[aria-pressed="true"] .face {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--fg);
+}

@@ -8,7 +8,7 @@ A simple todo app for personal use.
 * CSS modules for styling, using the tokens in `src/styles/theme.css`
 * Zustand for state
 * GSAP for animations
-* Hash routes (`#/habits`, `#/tasks`, `#/settings`) through the `useRoute` hook, so GitHub Pages needs no server fallback
+* Hash routes (`#/habits`, `#/tasks`, `#/notes`, `#/settings`) through the `useRoute` hook, so GitHub Pages needs no server fallback
 
 Scripts: `npm run dev`, `npm run build`, `npm run preview`.
 

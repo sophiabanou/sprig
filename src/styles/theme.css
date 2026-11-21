@@ -132,6 +132,9 @@
   --size-scrollbar: 10px;
   --size-watermark: 144px;
   --size-empty: 112px;
+  --size-note-list: 280px;
+  --size-note-marker: 4px;
+  --size-check-border: 1.5px;
   --rotate-watermark: -14deg;
   --watermark-opacity: 1;
 

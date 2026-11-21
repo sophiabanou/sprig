@@ -5,13 +5,16 @@ import { usePrefersReducedMotion } from './usePrefersReducedMotion'
 
 const HEADING = '[data-reveal="list-heading"]'
 const BODY = '[data-reveal="list-body"]'
+/* Only the rows of a list, not list items nested deeper, such as the lines of a note */
+const ROWS = `${BODY} > ul > li`
 
 /*
   Reveals the panel when the page renders, just after the header and tabs, and again whenever its content changes.
   A list card plays in two parts: the heading slides in from the side while its illustration pops in,
   then each row rises on its own, one after another. A list with no rows, and anything else, rises as a whole.
+  With hasSharedHeading, a change of key keeps the heading still, for panels whose states share one heading.
 */
-export function usePanelReveal(key = '') {
+export function usePanelReveal(key = '', { hasSharedHeading = false } = {}) {
   const panelRef = useRef(null)
   const previousKeyRef = useRef(null)
   const prefersReducedMotion = usePrefersReducedMotion()
@@ -33,9 +36,12 @@ export function usePanelReveal(key = '') {
         return
       }
 
-      timeline.from(`${HEADING} > :not(svg)`, { x: -ENTRANCE.rise, opacity: 0, stagger: ENTRANCE.stagger }, 0)
+      const isHeadingStill = hasSharedHeading && !isMount
+      if (!isHeadingStill) {
+        timeline.from(`${HEADING} > :not(svg)`, { x: -ENTRANCE.rise, opacity: 0, stagger: ENTRANCE.stagger }, 0)
+      }
 
-      if (panel.querySelector(`${HEADING} > svg`)) {
+      if (!isHeadingStill && panel.querySelector(`${HEADING} > svg`)) {
         timeline.from(
           `${HEADING} > svg`,
           { scale: 0.5, rotation: -12, opacity: 0, transformOrigin: '50% 50%', ease: ENTRANCE.popEase },
@@ -43,15 +49,15 @@ export function usePanelReveal(key = '') {
         )
       }
 
-      if (panel.querySelector(`${BODY} li`)) {
-        timeline.from(`${BODY} li`, { y: ENTRANCE.rise, opacity: 0, stagger: ENTRANCE.stagger }, ENTRANCE.stagger * 2)
+      if (panel.querySelector(ROWS)) {
+        timeline.from(ROWS, { y: ENTRANCE.rise, opacity: 0, stagger: ENTRANCE.stagger }, isHeadingStill ? 0 : ENTRANCE.stagger * 2)
       } else {
-        timeline.from(BODY, { y: ENTRANCE.rise, opacity: 0 }, ENTRANCE.stagger * 2)
+        timeline.from(BODY, { y: ENTRANCE.rise, opacity: 0 }, isHeadingStill ? 0 : ENTRANCE.stagger * 2)
       }
     }, panelRef)
 
     return () => context.revert()
-  }, [key, prefersReducedMotion])
+  }, [key, hasSharedHeading, prefersReducedMotion])
 
   return panelRef
 }

@@ -66,6 +66,16 @@ export const ILLUSTRATIONS = {
     { kind: 'sparkle', motion: 'twinkle', d: ['M43 4.5v5', 'M40.5 7h5'] },
     { kind: 'sparkle', motion: 'twinkle', d: ['M5 37.5v5', 'M2.5 40h5'] },
   ],
+  notepad: [
+    { kind: 'shadow', d: 'M14.5 10.5h20a3 3 0 0 1 3 3v28a3 3 0 0 1-3 3h-20a3 3 0 0 1-3-3v-28a3 3 0 0 1 3-3z' },
+    { kind: 'body', motion: 'float', d: 'M12 8h20a3 3 0 0 1 3 3v28a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3z' },
+    { kind: 'line', motion: 'float', d: ['M16 5v6', 'M22 5v6', 'M28 5v6'] },
+    { kind: 'detail', motion: 'float draw', d: ['M15 19h14', 'M15 25h14', 'M15 31h8'] },
+    { kind: 'accent', motion: 'float', d: 'M30 33l11-11 4 4-11 11-5.5 1.5z' },
+    { kind: 'line', motion: 'float', d: 'M30 33l4 4' },
+    { kind: 'sparkle', motion: 'twinkle', d: ['M43 4.5v5', 'M40.5 7h5'] },
+    { kind: 'sparkle', motion: 'twinkle', d: ['M5 37.5v5', 'M2.5 40h5'] },
+  ],
   logo: [
     { kind: 'shadow', d: 'M22.5 23.5h8a8 8 0 0 1 8 8v8a8 8 0 0 1-8 8h-8a8 8 0 0 1-8-8v-8a8 8 0 0 1 8-8z' },
     { kind: 'line', d: 'M24 21V10' },
