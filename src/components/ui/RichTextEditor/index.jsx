@@ -1,5 +1,6 @@
-import { memo, useCallback, useLayoutEffect, useState } from 'react'
+import { memo, useCallback, useState } from 'react'
 import { EditorContent } from '@tiptap/react'
+import { useEditorAutoFocus } from '../../../hooks/useEditorAutoFocus'
 import { useRichTextEditor } from '../../../hooks/useRichTextEditor'
 import LinkBar from '../LinkBar'
 import styles from './RichTextEditor.module.css'
@@ -9,7 +10,7 @@ function RichTextEditor({
   initialValue = '',
   label = '',
   titlePlaceholder = '',
-  editorRef = null,
+  isAutoFocused = false,
   header = null,
   onChange,
 } = {}) {
@@ -24,13 +25,7 @@ function RichTextEditor({
     onLinkShortcut: handleLinkShortcut,
   })
 
-  useLayoutEffect(() => {
-    if (!editorRef) return undefined
-    editorRef.current = editor
-    return () => {
-      editorRef.current = null
-    }
-  }, [editor, editorRef])
+  useEditorAutoFocus(editor, isAutoFocused)
 
   const handleLinkClose = useCallback(() => {
     setIsLinkOpen(false)

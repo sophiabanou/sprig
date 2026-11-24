@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { useNoteStore } from '../../../../store/useNoteStore'
 import { formatNoteStamp } from '../../../../utils/dates'
 import IconButton from '../../../ui/IconButton'
@@ -10,11 +10,6 @@ function NoteEditor({ note = {}, isAutoFocused = false, onBack, onDelete } = {})
   const { id = '', body = '', isPinned = false, createdAt = 0, updatedAt = createdAt } = note
   const updateNote = useNoteStore((state) => state.updateNote)
   const togglePin = useNoteStore((state) => state.togglePin)
-  const editorRef = useRef(null)
-
-  useEffect(() => {
-    if (isAutoFocused) editorRef.current?.commands.focus('start')
-  }, [isAutoFocused])
 
   const handleChange = useCallback((text = '') => updateNote(id, { body: text }), [id, updateNote])
   const handlePin = useCallback(() => togglePin(id), [id, togglePin])
@@ -44,7 +39,7 @@ function NoteEditor({ note = {}, isAutoFocused = false, onBack, onDelete } = {})
         initialValue={body}
         label="Note"
         titlePlaceholder="Title"
-        editorRef={editorRef}
+        isAutoFocused={isAutoFocused}
         header={stamp}
         onChange={handleChange}
       />
