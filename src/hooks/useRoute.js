@@ -4,6 +4,7 @@ export const ROUTES = {
   HABITS: 'habits',
   TASKS: 'tasks',
   NOTES: 'notes',
+  WORK: 'work',
   SETTINGS: 'settings',
 }
 

@@ -1,0 +1,17 @@
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.list > li + li {
+  border-top: 1px solid var(--border);
+}
+
+.empty {
+  padding: var(--space-2) 0;
+  color: var(--fg-muted);
+}

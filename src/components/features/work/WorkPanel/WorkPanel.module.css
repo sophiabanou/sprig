@@ -1,0 +1,37 @@
+/* The page reveal plays inside this wrapper, which passes the full height down */
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* The heading sits above the project list and the open project, which fill the rest of the window side by side */
+.section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 0;
+}
+
+.workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: var(--size-note-list) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: var(--space-6);
+  min-height: 0;
+}
+
+/* Small screens show the project list or the open project, one at a time */
+@media (max-width: 768px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workspace[data-view="list"] > :last-child,
+  .workspace[data-view="detail"] > :first-child {
+    display: none;
+  }
+}

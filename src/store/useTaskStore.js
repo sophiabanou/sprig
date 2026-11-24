@@ -1,12 +1,20 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+/* Version 2 adds projectId. Tasks saved before it are personal tasks. */
+function migrate(persisted = {}, version = 0) {
+  if (version >= 2) return persisted
+  const tasks = (persisted.tasks ?? []).map((task) => ({ projectId: null, ...task }))
+  return { ...persisted, tasks }
+}
+
+/* A task with no projectId is a personal task. Work tasks carry the id of their project. */
 export const useTaskStore = create(
   persist(
     (set, get) => ({
       tasks: [],
 
-      addTask: ({ title = '', description = '', dueDate = null } = {}) => {
+      addTask: ({ title = '', description = '', dueDate = null, projectId = null } = {}) => {
         const trimmedTitle = title.trim()
         if (!trimmedTitle) return null
 
@@ -15,6 +23,7 @@ export const useTaskStore = create(
           title: trimmedTitle,
           description: description.trim(),
           dueDate,
+          projectId,
           isDone: false,
           createdAt: Date.now(),
           completedAt: null,
@@ -55,9 +64,9 @@ export const useTaskStore = create(
           return { tasks }
         }),
 
-      clearCompleted: () =>
-        set((state) => ({ tasks: state.tasks.filter((task) => !task.isDone) })),
+      clearCompleted: (projectId = null) =>
+        set((state) => ({ tasks: state.tasks.filter((task) => !task.isDone || task.projectId !== projectId) })),
     }),
-    { name: 'todo-tasks', version: 1 },
+    { name: 'todo-tasks', version: 2, migrate },
   ),
 )

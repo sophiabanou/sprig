@@ -39,6 +39,11 @@ export const ICONS = {
     { kind: 'solid', d: 'M6 5h12a2 2 0 0 1 2 2v3H4V7a2 2 0 0 1 2-2z' },
     { kind: 'line', d: ['M8 3v3', 'M16 3v3', 'M8.5 14h.01', 'M12 14h.01', 'M15.5 14h.01', 'M8.5 17h.01', 'M12 17h.01'] },
   ],
+  archive: [
+    { kind: 'fill', d: 'M5 9h14v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z' },
+    { kind: 'solid', d: 'M5 4h14a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z' },
+    { kind: 'line', d: 'M10 13h4' },
+  ],
   alert: [
     { kind: 'fill', d: 'M12 3.5l9 16H3z' },
     { kind: 'line', d: ['M12 10v4', 'M12 16.8h.01'] },

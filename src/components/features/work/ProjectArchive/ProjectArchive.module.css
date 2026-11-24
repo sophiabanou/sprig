@@ -1,0 +1,45 @@
+.archive {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-pill);
+  color: var(--fg-muted);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--duration-hover) var(--ease-hover);
+}
+
+.toggle:hover {
+  background: var(--surface-muted);
+}
+
+.toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.label {
+  flex: 1;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-half);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

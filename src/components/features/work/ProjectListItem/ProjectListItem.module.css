@@ -1,0 +1,59 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--fg);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--duration-hover) var(--ease-hover);
+}
+
+.item:hover {
+  background: var(--surface-muted);
+}
+
+.item:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* The open project gets its tone fill, and the dot grows into a ring so the state is not shown by color alone */
+.item[aria-current="true"] {
+  color: var(--tone-fg);
+  background: var(--tone-bg);
+}
+
+.dot {
+  flex: none;
+  width: var(--size-project-dot);
+  height: var(--size-project-dot);
+  border: 1px solid var(--fg);
+  border-radius: var(--radius-pill);
+  background: var(--tone-vivid);
+}
+
+.item[aria-current="true"] .dot {
+  box-shadow: 0 0 0 var(--size-ring-gap) var(--tone-bg), 0 0 0 var(--size-ring) var(--tone-fg);
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.count {
+  flex: none;
+  color: var(--fg-muted);
+}
+
+.item[aria-current="true"] .count {
+  color: var(--tone-fg);
+}

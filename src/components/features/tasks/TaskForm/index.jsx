@@ -17,8 +17,8 @@ const DUE_OPTIONS = [
   { value: DUE_CHOICE.DATE, label: 'Pick a date' },
 ]
 
-/* Adds a new task, or edits the given one when task is set */
-function TaskForm({ task = null, initialDueChoice = DUE_CHOICE.NONE, headerAction = null, onAdd, onSave } = {}) {
+/* Adds a new task (to a project when projectId is set), or edits the given one when task is set */
+function TaskForm({ task = null, projectId = null, initialDueChoice = DUE_CHOICE.NONE, headerAction = null, onAdd, onSave } = {}) {
   const addTask = useTaskStore((state) => state.addTask)
   const updateTask = useTaskStore((state) => state.updateTask)
   const headingId = useId()
@@ -28,10 +28,10 @@ function TaskForm({ task = null, initialDueChoice = DUE_CHOICE.NONE, headerActio
 
   const handleCreate = useCallback(
     (task = {}) => {
-      if (!addTask(task)) return
+      if (!addTask({ ...task, projectId })) return
       onAdd?.(task)
     },
-    [addTask, onAdd],
+    [addTask, projectId, onAdd],
   )
 
   const handleUpdate = useCallback(

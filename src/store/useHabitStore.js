@@ -1,13 +1,14 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { startOfWeek, toDateKey } from '../utils/dates'
+import { TONES } from '../utils/tones'
 
 export const HABIT_FREQUENCY = {
   DAILY: 'daily',
   WEEKLY: 'weekly',
 }
 
-export const HABIT_COLORS = ['lilac', 'mint', 'peach', 'lemon', 'sky', 'rose']
+export const HABIT_COLORS = TONES
 
 /* Each icon has its own default color. Picking an icon picks its color, which can then be changed. */
 export const HABIT_ICON_COLORS = {

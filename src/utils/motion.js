@@ -28,3 +28,12 @@ export const TYPEWRITER = {
   type: 0.055,
   erase: 0.025,
 }
+
+/* Swapping one view for another: the old one slips out quickly, then the new one settles in */
+export const VIEW_SWAP = {
+  exit: 0.14,
+  enter: 0.32,
+  exitEase: 'power2.in',
+  rise: 8,
+  slide: 24,
+}

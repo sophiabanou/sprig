@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { route: ROUTES.HABITS, label: 'Habits', tone: 'peach' },
   { route: ROUTES.TASKS, label: 'Tasks', tone: 'sky' },
   { route: ROUTES.NOTES, label: 'Notes', tone: 'lemon' },
+  { route: ROUTES.WORK, label: 'Work', tone: 'rose' },
 ]
 
 const SECONDARY_ITEMS = [{ route: ROUTES.SETTINGS, label: 'Settings', tone: 'lilac', icon: 'sliders' }]

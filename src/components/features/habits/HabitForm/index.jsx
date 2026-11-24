@@ -8,7 +8,7 @@ import Icon from '../../../ui/Icon'
 import NumberField from '../../../ui/NumberField'
 import SegmentedControl from '../../../ui/SegmentedControl'
 import TextField from '../../../ui/TextField'
-import HabitColorPicker from '../HabitColorPicker'
+import ColorPicker from '../../../ui/ColorPicker'
 import HabitIconPicker from '../HabitIconPicker'
 import styles from './HabitForm.module.css'
 
@@ -101,7 +101,7 @@ function HabitForm({ habit = null, initialFrequency = HABIT_FREQUENCY.DAILY, hea
         <p className={`${styles.note} textCaption`}>Changing how often starts a fresh count.</p>
       </FieldReveal>
       <HabitIconPicker value={icon} color={color} onChange={handleIconChange} />
-      <HabitColorPicker value={color} onChange={handleColorChange} />
+      <ColorPicker value={color} onChange={handleColorChange} />
       <Button type="submit" size="lg" className={styles.submit}>
         <Icon name={isEditing ? 'check' : 'plus'} />
         {isEditing ? 'Save changes' : 'Add habit'}

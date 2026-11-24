@@ -5,8 +5,8 @@ import IconButton from '../../../ui/IconButton'
 import RichTextEditor from '../../../ui/RichTextEditor'
 import styles from './NoteEditor.module.css'
 
-/* Edits one note and saves as you type. Remount it with the note id as key to switch notes. */
-function NoteEditor({ note = {}, isAutoFocused = false, onBack, onDelete } = {}) {
+/* Edits one note and saves as you type. Remount it with the note id as key to switch notes. The back button shows on small screens, or always with isBackShown. */
+function NoteEditor({ note = {}, isAutoFocused = false, isBackShown = false, onBack, onDelete } = {}) {
   const { id = '', body = '', isPinned = false, createdAt = 0, updatedAt = createdAt } = note
   const updateNote = useNoteStore((state) => state.updateNote)
   const togglePin = useNoteStore((state) => state.togglePin)
@@ -27,7 +27,7 @@ function NoteEditor({ note = {}, isAutoFocused = false, onBack, onDelete } = {})
   return (
     <div className={styles.note}>
       <div className={styles.bar}>
-        <span className={styles.back}>
+        <span className={isBackShown ? undefined : styles.back}>
           <IconButton label="Back to notes" icon="chevronLeft" hasLift={false} onClick={onBack} />
         </span>
         <div className={styles.actions}>

@@ -3,15 +3,15 @@ import { useTaskStore } from '../store/useTaskStore'
 
 const byDueDate = (first, second) => first.dueDate.localeCompare(second.dueDate)
 
-/* Splits tasks into dated (soonest first) and general (no date). Done tasks stay in place so rows never jump. */
-export function useTaskGroups() {
+/* Splits the tasks of one project (or personal tasks when projectId is null) into dated (soonest first) and general (no date). Done tasks stay in place so rows never jump. */
+export function useTaskGroups(projectId = null) {
   const tasks = useTaskStore((state) => state.tasks)
 
-  return useMemo(
-    () => ({
-      dated: tasks.filter((task) => task.dueDate).sort(byDueDate),
-      general: tasks.filter((task) => !task.dueDate),
-    }),
-    [tasks],
-  )
+  return useMemo(() => {
+    const ownTasks = tasks.filter((task) => task.projectId === projectId)
+    return {
+      dated: ownTasks.filter((task) => task.dueDate).sort(byDueDate),
+      general: ownTasks.filter((task) => !task.dueDate),
+    }
+  }, [tasks, projectId])
 }

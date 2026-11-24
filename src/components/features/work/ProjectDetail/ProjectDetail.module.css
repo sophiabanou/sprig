@@ -1,0 +1,17 @@
+/* Scrolls on its own beside the project list, with room around the rows for the focus ring and the button lift */
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  min-height: 0;
+  padding: var(--space-2) var(--space-2) var(--space-6);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-control) transparent;
+}
+
+.count {
+  flex: none;
+  color: var(--fg-muted);
+}

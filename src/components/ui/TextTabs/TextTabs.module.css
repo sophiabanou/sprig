@@ -1,0 +1,78 @@
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.list {
+  flex: 1;
+  display: flex;
+  gap: var(--space-4);
+}
+
+/* The selected tab is darker and sits on a line, so the state is not shown by color alone */
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-control);
+  padding: 0 var(--space-1);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: var(--size-tab-underline);
+  border-radius: var(--radius-pill);
+  background: transparent;
+}
+
+.tab:hover,
+.tab[aria-selected="true"] {
+  color: var(--fg);
+}
+
+.tab[aria-selected="true"]::after {
+  background: var(--fg);
+}
+
+.tab:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.panel {
+  border-radius: var(--radius-md);
+}
+
+.panel:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.filling,
+.filling .panel {
+  flex: 1;
+  min-height: 0;
+}
+
+.filling .panel {
+  display: flex;
+  flex-direction: column;
+}

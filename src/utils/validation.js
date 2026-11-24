@@ -8,6 +8,8 @@ const MESSAGES = {
   datePast: 'Pick today or a later date.',
   habitName: 'Enter a name for the habit.',
   habitDuplicate: 'You already have a habit with this name.',
+  projectName: 'Enter a name for the project.',
+  projectDuplicate: 'You already have a project with this name.',
   habitTarget: `Enter a whole number from ${HABIT_TARGET.min} to ${HABIT_TARGET.max}.`,
 }
 
@@ -30,6 +32,14 @@ export function validateHabit({ name = '', target = '' } = {}, existingNames = [
   if (target === '' || !Number.isInteger(number) || number < HABIT_TARGET.min || number > HABIT_TARGET.max) {
     errors.target = MESSAGES.habitTarget
   }
+  return errors
+}
+
+export function validateProject({ name = '' } = {}, existingNames = []) {
+  const errors = {}
+  const trimmedName = name.trim().toLowerCase()
+  if (!trimmedName) errors.name = MESSAGES.projectName
+  else if (existingNames.some((existing) => existing.toLowerCase() === trimmedName)) errors.name = MESSAGES.projectDuplicate
   return errors
 }
 

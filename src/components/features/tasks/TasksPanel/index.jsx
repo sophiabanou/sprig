@@ -1,8 +1,9 @@
 import { memo, useCallback, useMemo, useState } from 'react'
-import { useFormDrawer } from '../../../../hooks/useFormDrawer'
 import { useTaskGroups } from '../../../../hooks/useTaskGroups'
 import { useTaskDelete } from '../../../../hooks/useTaskDelete'
+import { useTaskDrawer } from '../../../../hooks/useTaskDrawer'
 import { DUE_CHOICE } from '../../../../hooks/useTaskForm'
+import { countLeft } from '../../../../utils/tasks'
 import PageHeader from '../../../layout/PageHeader'
 import Button from '../../../ui/Button'
 import Drawer from '../../../ui/Drawer'
@@ -23,48 +24,16 @@ const TASK_TABS = [
   { id: TASK_TAB.GENERAL, label: 'Anytime', tone: 'mint' },
 ]
 
-function countLeft(tasks = []) {
-  const leftCount = tasks.filter((task) => !task.isDone).length
-  return leftCount === 0 ? 'All done' : `${leftCount} left`
-}
-
 function TasksPanel() {
   const { dated, general } = useTaskGroups()
   const { headingRef, handleDelete } = useTaskDelete()
-  const { isOpen, formKey, handleOpen, handleClose, handleClosed, closeWithMessage } = useFormDrawer()
   const [activeTab, setActiveTab] = useState(TASK_TAB.DATED)
-  const [editingTask, setEditingTask] = useState(null)
   const isDated = activeTab === TASK_TAB.DATED
   const tasks = isDated ? dated : general
 
-  const handleNew = useCallback(() => {
-    setEditingTask(null)
-    handleOpen()
-  }, [handleOpen])
-
-  const handleEdit = useCallback(
-    (task = {}) => {
-      setEditingTask(task)
-      handleOpen()
-    },
-    [handleOpen],
-  )
-
-  const handleSave = useCallback(
-    (task = {}) => {
-      setActiveTab(task.dueDate ? TASK_TAB.DATED : TASK_TAB.GENERAL)
-      closeWithMessage(`Task updated: ${task.title}`)
-    },
-    [closeWithMessage],
-  )
-
-  const handleAdd = useCallback(
-    (task = {}) => {
-      setActiveTab(task.dueDate ? TASK_TAB.DATED : TASK_TAB.GENERAL)
-      closeWithMessage(`Task added: ${task.title.trim()}`)
-    },
-    [closeWithMessage],
-  )
+  const showTaskTab = useCallback((task = {}) => setActiveTab(task.dueDate ? TASK_TAB.DATED : TASK_TAB.GENERAL), [])
+  const { isOpen, formKey, editingTask, handleNew, handleEdit, handleAdd, handleSave, handleClose, handleClosed } =
+    useTaskDrawer({ onDone: showTaskTab })
 
   const newTaskButton = useMemo(
     () => (

@@ -123,6 +123,7 @@
   --size-ring: 4px;
   --size-lift: 3px;
   --size-strike: 2px;
+  --size-tab-underline: 2px;
   --size-drawer: 440px;
   --size-sheet: 90dvh;
   --size-grabber-width: 36px;
@@ -134,6 +135,7 @@
   --size-empty: 112px;
   --size-note-list: 280px;
   --size-note-marker: 4px;
+  --size-project-dot: 10px;
   --size-check-border: 1.5px;
   --rotate-watermark: -14deg;
   --watermark-opacity: 1;

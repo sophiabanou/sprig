@@ -1,10 +1,13 @@
 import { memo, useCallback, useMemo } from 'react'
 import { formatNoteListDate } from '../../../../utils/dates'
 import { getNotePreview, getNoteTitle } from '../../../../utils/notes'
+import Icon from '../../../ui/Icon'
+import VisuallyHidden from '../../../ui/VisuallyHidden'
 import styles from './NoteListItem.module.css'
 
-function NoteListItem({ note = {}, today = '', isSelected = false, onSelect } = {}) {
-  const { id = '', body = '', updatedAt = 0 } = note
+/* shouldShowPin marks pinned notes, for lists that do not group them under a Pinned heading */
+function NoteListItem({ note = {}, today = '', isSelected = false, shouldShowPin = false, onSelect } = {}) {
+  const { id = '', body = '', updatedAt = 0, isPinned = false } = note
   const title = useMemo(() => getNoteTitle(body) || 'New note', [body])
   const preview = useMemo(() => getNotePreview(body) || 'No additional text', [body])
 
@@ -19,7 +22,15 @@ function NoteListItem({ note = {}, today = '', isSelected = false, onSelect } = 
         aria-current={isSelected ? 'true' : undefined}
         onClick={handleClick}
       >
-        <span className={`${styles.title} textButton`}>{title}</span>
+        <span className={styles.titleRow}>
+          <span className={`${styles.title} textButton`}>{title}</span>
+          {shouldShowPin && isPinned && (
+            <span className={styles.pin}>
+              <Icon name="pin" size="sm" />
+              <VisuallyHidden>Pinned</VisuallyHidden>
+            </span>
+          )}
+        </span>
         <span className={`${styles.meta} textCaption`}>
           <span className={styles.date}>{formatNoteListDate(updatedAt, today)}</span>
           <span className={styles.preview}>{preview}</span>

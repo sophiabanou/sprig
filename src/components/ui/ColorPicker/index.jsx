@@ -1,22 +1,12 @@
 import { memo, useCallback, useId } from 'react'
-import { HABIT_COLORS } from '../../../../store/useHabitStore'
-import { useChangePop } from '../../../../hooks/useChangePop'
-import { getToneClass } from '../../../../utils/tones'
-import Fieldset from '../../../ui/Fieldset'
-import Icon from '../../../ui/Icon'
-import VisuallyHidden from '../../../ui/VisuallyHidden'
-import styles from './HabitColorPicker.module.css'
+import { useChangePop } from '../../../hooks/useChangePop'
+import { getToneClass, TONE_LABELS, TONES } from '../../../utils/tones'
+import Fieldset from '../Fieldset'
+import Icon from '../Icon'
+import VisuallyHidden from '../VisuallyHidden'
+import styles from './ColorPicker.module.css'
 
-const COLOR_LABELS = {
-  lilac: 'Lilac',
-  mint: 'Mint',
-  peach: 'Peach',
-  lemon: 'Lemon',
-  sky: 'Sky',
-  rose: 'Rose',
-}
-
-function HabitColorPicker({ value = HABIT_COLORS[0], onChange } = {}) {
+function ColorPicker({ value = TONES[0], onChange } = {}) {
   const name = useId()
   const checkRef = useChangePop(value)
   const handleChange = useCallback((event) => onChange?.(event.target.value), [onChange])
@@ -24,7 +14,7 @@ function HabitColorPicker({ value = HABIT_COLORS[0], onChange } = {}) {
   return (
     <Fieldset legend="Color">
       <div className={styles.options}>
-        {HABIT_COLORS.map((color) => (
+        {TONES.map((color) => (
           <label key={color} className={`${styles.option} ${getToneClass(color)}`}>
             <input
               type="radio"
@@ -41,7 +31,7 @@ function HabitColorPicker({ value = HABIT_COLORS[0], onChange } = {}) {
                 </span>
               )}
             </span>
-            <VisuallyHidden>{COLOR_LABELS[color]}</VisuallyHidden>
+            <VisuallyHidden>{TONE_LABELS[color]}</VisuallyHidden>
           </label>
         ))}
       </div>
@@ -49,4 +39,4 @@ function HabitColorPicker({ value = HABIT_COLORS[0], onChange } = {}) {
   )
 }
 
-export default memo(HabitColorPicker)
+export default memo(ColorPicker)

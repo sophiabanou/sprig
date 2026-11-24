@@ -76,6 +76,13 @@ export const ILLUSTRATIONS = {
     { kind: 'sparkle', motion: 'twinkle', d: ['M43 4.5v5', 'M40.5 7h5'] },
     { kind: 'sparkle', motion: 'twinkle', d: ['M5 37.5v5', 'M2.5 40h5'] },
   ],
+  folder: [
+    { kind: 'shadow', d: 'M12.5 13.5h7l3 4h16a3 3 0 0 1 3 3v17a3 3 0 0 1-3 3h-26a3 3 0 0 1-3-3v-21a3 3 0 0 1 3-3z' },
+    { kind: 'accent', motion: 'float', d: 'M10 11h7l3 4h16a3 3 0 0 1 3 3v17a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3V14a3 3 0 0 1 3-3z' },
+    { kind: 'body', motion: 'float', d: 'M7 22a3 3 0 0 1 3-3h26a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3z' },
+    { kind: 'sparkle', motion: 'twinkle', d: ['M43 4.5v5', 'M40.5 7h5'] },
+    { kind: 'sparkle', motion: 'twinkle', d: ['M5 40.5v5', 'M2.5 43h5'] },
+  ],
   logo: [
     { kind: 'shadow', d: 'M22.5 23.5h8a8 8 0 0 1 8 8v8a8 8 0 0 1-8 8h-8a8 8 0 0 1-8-8v-8a8 8 0 0 1 8-8z' },
     { kind: 'line', d: 'M24 21V10' },
