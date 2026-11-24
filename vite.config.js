@@ -7,6 +7,7 @@ import react from '@vitejs/plugin-react'
 */
 const LAZY_DEPENDENCIES = [
   '@tiptap/core',
+  '@tiptap/pm/state',
   '@tiptap/react',
   '@tiptap/starter-kit',
   '@tiptap/extension-document',
